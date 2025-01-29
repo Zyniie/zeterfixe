@@ -44,3 +44,19 @@ let navLinks = document.querySelectorAll(".menu li a");
 navLinks.forEach((link) => {
   link.addEventListener("click", hideNavMenu);
 });
+
+document.querySelectorAll('.scroll-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault(); // Mencegah perubahan URL dengan hash
+
+    // Ambil ID dari href
+    const targetId = this.getAttribute('href').substring(1); 
+    const targetSection = document.getElementById(targetId);
+    
+    // Scroll ke section dengan smooth scroll
+    targetSection.scrollIntoView({ behavior: 'smooth' });
+
+    // Mengubah URL tanpa hash
+    history.pushState(null, null, `/${targetId}`); // Ubah URL tanpa hash
+  });
+});
